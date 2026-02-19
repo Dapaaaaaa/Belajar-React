@@ -1,4 +1,4 @@
-// import FormLogin from "../fragments/FormLogin";
+import { Link } from "react-router-dom";
 
 const AuthLayout = (props) => {
   const { children, title } = props;
@@ -11,6 +11,17 @@ const AuthLayout = (props) => {
           Welcome, please enter your details
         </p>
         {children}
+        <p className="text-center mt-2 text-base text-gray-500">
+          <em>
+            Don't have an account?{" "}
+            <Link
+              to="/register"
+              className="text-blue-600 font-bold underline underline-offset-1"
+            >
+              Register Now!
+            </Link>
+          </em>
+        </p>
       </div>
     </div>
   );
