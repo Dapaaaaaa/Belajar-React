@@ -1,8 +1,7 @@
 // import FormLogin from "../fragments/FormLogin";
 
 const AuthLayout = (props) => {
-
-    const { children, title } = props;
+  const { children, title } = props;
 
   return (
     <div className="flex justify-center min-h-screen items-center">
