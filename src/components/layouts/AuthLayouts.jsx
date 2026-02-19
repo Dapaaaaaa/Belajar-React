@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
-const AuthLayout = (props) => {
-  const { children, title, type } = props;
+const AuthLayout = ({ children, title, type }) => {
+  const isLogin = type === "login";
 
   return (
     <div className="flex justify-center min-h-screen items-center">
@@ -13,18 +13,9 @@ const AuthLayout = (props) => {
         {children}
         <p className="text-center mt-2 text-base text-gray-500">
           <em>
-            {/* Jika type dari file pages adalah login */}
-            {type == "login"
-            // Maka tampilkan text "Don't have an account? "
-              ? "Don't have an account? "
-            // Jika tidak maka tampilkan text
-              : "Already have an account? "}
-            <Link
-            // jika type dari file pages adalah login maka arahkan ke halaman register, jika tidak maka arahkan ke halaman login
-              to={type == "login" ? "/register" : "/login"}
-              className="text-blue-600 font-bold underline underline-offset-1"
-            >
-              Register Now!
+            {isLogin ? "Don't have an account? " : "Already have an account? "}
+            <Link to={isLogin ? "/register" : "/login"} className="text-blue-600 font-bold underline underline-offset-1">
+              {isLogin ? "Register Now!" : "Login Now!"}
             </Link>
           </em>
         </p>
