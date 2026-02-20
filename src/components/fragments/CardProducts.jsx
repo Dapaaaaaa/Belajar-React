@@ -1,0 +1,63 @@
+import Button from "../elements/buttons";
+
+const Header = (props) => {
+    const {image} = props;
+    return (
+        // {/* Div Gambar */}
+        <div className="p-5">
+            <a href="#">
+            <img
+                src={image}
+                alt="Contoh Gambar"
+                className="rounded-xl"
+            />
+            </a>
+        </div>
+    );
+};
+
+const Body = (props) => {
+    const {title, children} = props;
+    return (
+        // {/* Div Text */}
+        <div className="px-5 pb-3">
+          <a href="">
+            <h5 className=" text-2xl font-semibold tracking-tight text-white">
+              {title}
+            </h5>
+          </a>
+          <p className="text-base text-white">
+            {children}
+          </p>
+        </div>
+    );
+};
+
+const Footer = (props) => {
+    const {children ,price} = props;
+    return (
+        //  {/* Div Tombol */}
+        <div className="flex items-center justify-between px-5 pb-3">
+            <span className="text-xl font-bold text-white">Rp. {price}</span>
+            <Button className="bg-blue-600">{children}</Button>
+        </div>
+    );
+};
+
+const CardProducts = (props) => {
+    const {children} = props;
+    return (
+        // {/* Div semua */}
+      <div className="w-full mt-5 max-w-sm bg-gray-800 border border-gray-700 rounded-lg shadow mx-2">
+
+        {children}
+
+      </div>
+    );
+}
+
+CardProducts.Header = Header;
+CardProducts.Body = Body;
+CardProducts.Footer = Footer;
+
+export default CardProducts;
