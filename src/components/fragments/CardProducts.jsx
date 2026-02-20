@@ -17,13 +17,13 @@ const Header = (props) => {
 };
 
 const Body = (props) => {
-    const {title, children} = props;
+    const {name, children} = props;
     return (
         // {/* Div Text */}
-        <div className="px-5 pb-3">
+        <div className="px-5 pb-3 h-full">
           <a href="">
             <h5 className=" text-2xl font-semibold tracking-tight text-white">
-              {title}
+              {name}
             </h5>
           </a>
           <p className="text-base text-white">
@@ -48,7 +48,7 @@ const CardProducts = (props) => {
     const {children} = props;
     return (
         // {/* Div semua */}
-      <div className="w-full mt-5 max-w-sm bg-gray-800 border border-gray-700 rounded-lg shadow mx-2">
+      <div className="w-full mt-5 max-w-sm bg-gray-800 border border-gray-700 rounded-lg shadow mx-2 flex flex-col justify-between">
 
         {children}
 
