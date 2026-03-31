@@ -1,4 +1,4 @@
-import FormLogin from "../components/fragments/formLogin";
+import FormLogin from "../components/fragments/FormLogin";
 import AuthLayout from "../components/layouts/AuthLayouts";
 
 const LoginPage = () => {

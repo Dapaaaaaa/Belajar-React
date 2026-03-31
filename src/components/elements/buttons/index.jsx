@@ -43,15 +43,15 @@
 // Versi Youtube
 const Button = (props) => {
     // Nilai Default 
-    const {variant = 'bg-black', children = 'Default'} = props;
+    const {variant = 'bg-black', children = 'Default', onClick = () => {}, type = 'button'} = props;
 
     return (
         <div>
         <button
             className={`h-10 px-6 font-semibold rounded-md transition ${variant} text-white cursor-pointer`}
-            type="submit"
+            type={type}
+            onClick={onClick}
         >
-            {" "}
             {children}
         </button>
         </div>
