@@ -43,12 +43,12 @@
 // Versi Youtube
 const Button = (props) => {
     // Nilai Default 
-    const {className = 'bg-black', children = 'Default'} = props;
+    const {variant = 'bg-black', children = 'Default'} = props;
 
     return (
         <div>
         <button
-            className={`h-10 px-6 font-semibold rounded-md transition ${className} text-white cursor-pointer`}
+            className={`h-10 px-6 font-semibold rounded-md transition ${variant} text-white cursor-pointer`}
             type="submit"
         >
             {" "}
