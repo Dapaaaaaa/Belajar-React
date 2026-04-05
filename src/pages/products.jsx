@@ -27,7 +27,12 @@ const email = localStorage.getItem("email");
 
 const ProductsPage = () => {
 
-  const [cart, setCart] = useState(cart);
+  const [cart, setCart] = useState([
+    {
+      name: "Kebab Ayam",
+      qty: 1,
+    }
+  ]);
 
   const handleLogout = () => {
     localStorage.removeItem("email");
@@ -65,6 +70,13 @@ const ProductsPage = () => {
         </div>
         <div className="w-1/4">
           <h1 className="text-3xl font-bold text-blue-600">Cart</h1>
+          <ul>
+            {cart.map((item) => (
+              <li key={item.name} className="flex justify-between items-center py-2">
+                <span>{item.name}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </Fragment>
