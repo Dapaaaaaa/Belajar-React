@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import CardProducts from "../components/fragments/CardProducts";
 import Button from "../components/elements/buttons";
 import Counter from "../components/fragments/Counter";
@@ -7,7 +7,7 @@ const Products = [
   {
     id: 1,
     name: "Kebab Ayam",
-    price: "13.000",
+    price: 10000,
     image: "img/kebab_290922.jpg",
     description:
       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus autem velit magni, cupiditate quae soluta iusto odit debitis eum impedit maxime obcaecati, aperiam pariatur architecto reiciendis voluptates. Explicabo, autem eius.",
@@ -15,7 +15,7 @@ const Products = [
   {
     id: 2,
     name: "Kebab Sapi",
-    price: "15.000",
+    price: 15000,
     image: "img/kebab_290922.jpg",
     description:
       "Lorem ipsum dolor, sit amet consectetur aodit debitis  reiciendis voluptates. Explicabo, autem eius.",
@@ -26,6 +26,8 @@ const email = localStorage.getItem("email");
 
 
 const ProductsPage = () => {
+
+  const [cart, setCart] = useState(cart);
 
   const handleLogout = () => {
     localStorage.removeItem("email");
@@ -39,7 +41,7 @@ const ProductsPage = () => {
         {email}
         <Button variant="ml-5 bg-red-400" onClick={handleLogout}>logout</Button>
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center py-5">
         {/* <CardProducts>
               <CardProducts.Header image="/img/kebab_290922.jpg"></CardProducts.Header>
               <CardProducts.Body name="Kebab Ayam">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus
@@ -48,6 +50,7 @@ const ProductsPage = () => {
               voluptates. Explicabo, autem eius.</CardProducts.Body>
               <CardProducts.Footer price="13.000">Beli Sekarang</CardProducts.Footer>
           </CardProducts> */}
+        <div className="w-3/4 flex flex-wrap">
         {Products.map((product) => (
           <CardProducts key={product.id}>
             <CardProducts.Header image={product.image}></CardProducts.Header>
@@ -59,6 +62,10 @@ const ProductsPage = () => {
             </CardProducts.Footer>
           </CardProducts>
         ))}
+        </div>
+        <div className="w-1/4">
+          <h1 className="text-3xl font-bold text-blue-600">Cart</h1>
+        </div>
       </div>
     </Fragment>
   );
