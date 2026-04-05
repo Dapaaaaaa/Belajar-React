@@ -105,7 +105,7 @@ const ProductsPage = () => {
                   return (
                     <tr key={item.id}>
                       <td>{product.name}</td>
-                      <td>{product.price.toLocaleString("id-ID", { styles: "currency", currency: "IDR" })}</td>
+                      <td>Rp.{product.price.toLocaleString("id-ID", { styles: "currency", currency: "IDR" })}</td>
                       <td>{item.qty}</td>
                       <td>Rp.{(product.price * item.qty).toLocaleString("id-ID", { styles: "currency", currency: "IDR" })}</td>
                     </tr>

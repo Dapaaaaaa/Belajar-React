@@ -45,7 +45,7 @@ const CardProducts = (props) => {
   const { children } = props;
   return (
     // {/* Div semua */}
-    <div className="w-full mt-5 max-w-sm bg-gray-800 border border-gray-700 rounded-lg shadow mx-2 my-2 flex flex-col justify-between">
+    <div className="w-full mt-5 max-w-sm bg-gray-800 border border-gray-700 rounded-lg shadow mx-3 my-2 flex flex-col justify-between">
       {children}
     </div>
   );
