@@ -40,22 +40,29 @@ const ProductsPage = () => {
     window.location.href = "/login";
   };
 
-  const handleAddToCart = (product) => {
-    setCart((prevCart) => {
-      const existingIndex = prevCart.findIndex(
-        (item) => item.id === product.id
-      );
+  const handleAddToCart = (productName) => {
+    // setCart((prevCart) => {
+    //   const existingIndex = prevCart.findIndex(
+    //     (item) => item.id === product.id
+    //   );
 
-      if (existingIndex !== -1) {
-        return prevCart.map((item, index) =>
-          index === existingIndex
-            ? { ...item, qty: item.qty + 1 }
-            : item
-        );
-      }
+    //   if (existingIndex !== -1) {
+    //     return prevCart.map((item, index) =>
+    //       index === existingIndex
+    //         ? { ...item, qty: item.qty + 1 }
+    //         : item
+    //     );
+    //   }
 
-      return [...prevCart, { ...product, qty: 1 }];
-    });
+    //   return [...prevCart, { ...product, qty: 1 }];
+    // });
+    setCart([
+       ...cart,
+    {
+      name: product.name,
+      qty: 1,
+    },
+    ]);
   };
 
   return (
@@ -80,7 +87,7 @@ const ProductsPage = () => {
             <CardProducts.Body name={product.name}>
               {product.description}
             </CardProducts.Body>
-            <CardProducts.Footer price={product.price} handleAddToCart={() => handleAddToCart(product)}>
+            <CardProducts.Footer price={product.price} handleAddToCart={handleAddToCart}>
               Beli Sekarang
             </CardProducts.Footer>
           </CardProducts>
