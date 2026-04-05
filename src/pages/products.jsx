@@ -60,9 +60,6 @@ const ProductsPage = () => {
           </CardProducts>
         ))}
       </div>
-      <div className="flex w-full justify-center">
-        <Counter></Counter>
-      </div>
     </Fragment>
   );
 };
