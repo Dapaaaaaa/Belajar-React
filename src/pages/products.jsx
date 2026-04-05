@@ -40,6 +40,24 @@ const ProductsPage = () => {
     window.location.href = "/login";
   };
 
+  const handleAddToCart = (product) => {
+    setCart((prevCart) => {
+      const existingIndex = prevCart.findIndex(
+        (item) => item.id === product.id
+      );
+
+      if (existingIndex !== -1) {
+        return prevCart.map((item, index) =>
+          index === existingIndex
+            ? { ...item, qty: item.qty + 1 }
+            : item
+        );
+      }
+
+      return [...prevCart, { ...product, qty: 1 }];
+    });
+  };
+
   return (
     <Fragment>
       <div className="flex justify-end h-10 bg-blue-600 text-white items-center px-10">
@@ -62,7 +80,7 @@ const ProductsPage = () => {
             <CardProducts.Body name={product.name}>
               {product.description}
             </CardProducts.Body>
-            <CardProducts.Footer price={product.price}>
+            <CardProducts.Footer price={product.price} handleAddToCart={() => handleAddToCart(product)}>
               Beli Sekarang
             </CardProducts.Footer>
           </CardProducts>
