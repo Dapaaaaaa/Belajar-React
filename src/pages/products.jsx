@@ -88,9 +88,9 @@ const ProductsPage = () => {
           ))}
         </div>
         <div className="w-1/4">
-          <h1 className="text-3xl font-bold text-blue-600">Cart</h1>
+          <h1 className="text-3xl font-bold text-blue-600 ml-5 mb-2">Cart</h1>
           <ul>
-            <table>
+            <table className="text-left table-auto border-separate border-spacing-2">
               <thead>
                 <tr>
                   <th>Products</th>
@@ -105,9 +105,9 @@ const ProductsPage = () => {
                   return (
                     <tr key={item.id}>
                       <td>{product.name}</td>
-                      <td>{product.price}</td>
+                      <td>{product.price.toLocaleString("id-ID", { styles: "currency", currency: "IDR" })}</td>
                       <td>{item.qty}</td>
-                      <td>{product.price * item.qty}</td>
+                      <td>Rp.{(product.price * item.qty).toLocaleString("id-ID", { styles: "currency", currency: "IDR" })}</td>
                     </tr>
                   );
                 })}
