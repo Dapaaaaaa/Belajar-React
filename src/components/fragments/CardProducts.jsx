@@ -33,7 +33,7 @@ const Footer = (props) => {
     //  {/* Div Tombol */}
     <div className="flex items-center justify-between px-5 pb-3">
       <span className="text-xl font-bold text-white">Rp. {price}</span>
-      <Button className="bg-blue-600">{children}</Button>
+      <Button variant="bg-blue-600">{children}</Button>
     </div>
   );
 };
