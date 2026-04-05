@@ -24,15 +24,8 @@ const Products = [
 
 const email = localStorage.getItem("email");
 
-
 const ProductsPage = () => {
-
-  const [cart, setCart] = useState([
-    {
-      name: "Kebab Ayam",
-      qty: 1,
-    }
-  ]);
+  const [cart, setCart] = useState([]);
 
   const handleLogout = () => {
     localStorage.removeItem("email");
@@ -40,36 +33,33 @@ const ProductsPage = () => {
     window.location.href = "/login";
   };
 
-  const handleAddToCart = (productName) => {
-    // setCart((prevCart) => {
-    //   const existingIndex = prevCart.findIndex(
-    //     (item) => item.id === product.id
-    //   );
+  const handleAddToCart = (id) => {
+    setCart((prevCart) => {
+      const existingItem = prevCart.find((item) => item.id === id);
 
-    //   if (existingIndex !== -1) {
-    //     return prevCart.map((item, index) =>
-    //       index === existingIndex
-    //         ? { ...item, qty: item.qty + 1 }
-    //         : item
-    //     );
-    //   }
+      if (existingItem) {
+        return prevCart.map((item) =>
+          item.id === id ? { ...item, qty: item.qty + 1 } : item,
+        );
+      }
 
-    //   return [...prevCart, { ...product, qty: 1 }];
-    // });
-    setCart([
-       ...cart,
-    {
-      name: product.name,
-      qty: 1,
-    },
-    ]);
+      return [
+        ...prevCart,
+        {
+          id,
+          qty: 1,
+        },
+      ];
+    });
   };
 
   return (
     <Fragment>
       <div className="flex justify-end h-10 bg-blue-600 text-white items-center px-10">
         {email}
-        <Button variant="ml-5 bg-red-400" onClick={handleLogout}>logout</Button>
+        <Button variant="ml-5 bg-red-400" onClick={handleLogout}>
+          logout
+        </Button>
       </div>
       <div className="flex justify-center py-5">
         {/* <CardProducts>
@@ -81,26 +71,48 @@ const ProductsPage = () => {
               <CardProducts.Footer price="13.000">Beli Sekarang</CardProducts.Footer>
           </CardProducts> */}
         <div className="w-3/4 flex flex-wrap">
-        {Products.map((product) => (
-          <CardProducts key={product.id}>
-            <CardProducts.Header image={product.image}></CardProducts.Header>
-            <CardProducts.Body name={product.name}>
-              {product.description}
-            </CardProducts.Body>
-            <CardProducts.Footer price={product.price} handleAddToCart={handleAddToCart}>
-              Beli Sekarang
-            </CardProducts.Footer>
-          </CardProducts>
-        ))}
+          {Products.map((product) => (
+            <CardProducts key={product.id}>
+              <CardProducts.Header image={product.image}></CardProducts.Header>
+              <CardProducts.Body name={product.name}>
+                {product.description}
+              </CardProducts.Body>
+              <CardProducts.Footer
+                id={product.id}
+                price={product.price}
+                handleAddToCart={handleAddToCart}
+              >
+                Beli Sekarang
+              </CardProducts.Footer>
+            </CardProducts>
+          ))}
         </div>
         <div className="w-1/4">
           <h1 className="text-3xl font-bold text-blue-600">Cart</h1>
           <ul>
-            {cart.map((item) => (
-              <li key={item.name} className="flex justify-between items-center py-2">
-                <span>{item.name}</span>
-              </li>
-            ))}
+            <table>
+              <thead>
+                <tr>
+                  <th>Products</th>
+                  <th>Price</th>
+                  <th>Quantity</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cart.map((item) => {
+                  const product = Products.find((p) => p.id === item.id);
+                  return (
+                    <tr key={item.id}>
+                      <td>{product.name}</td>
+                      <td>{product.price}</td>
+                      <td>{item.qty}</td>
+                      <td>{product.price * item.qty}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
           </ul>
         </div>
       </div>

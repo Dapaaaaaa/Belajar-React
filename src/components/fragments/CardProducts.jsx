@@ -28,7 +28,7 @@ const Body = (props) => {
 };
 
 const Footer = (props) => {
-  const { children, price } = props;
+  const { children, price, handleAddToCart, id} = props;
   return (
     //  {/* Div Tombol */}
     <div className="flex items-center justify-between px-5 pb-3">
@@ -36,7 +36,7 @@ const Footer = (props) => {
         Rp.
         {price.toLocaleString("id-ID", { styles: "currency", currency: "IDR" })}
       </span>
-      <Button variant="bg-blue-600">{children}</Button>
+      <Button variant="bg-blue-600" onClick={() => handleAddToCart(id)}>{children}</Button>
     </div>
   );
 };
