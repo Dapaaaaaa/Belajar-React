@@ -4,7 +4,7 @@ const Header = (props) => {
   const { image } = props;
   return (
     // {/* Div Gambar */}
-    <div className="p-5">
+    <div className="p-5 h-100 flex items-center justify-center bg-gray-700 rounded-tl-lg rounded-tr-lg">
       <a href="#">
         <img src={image} alt="Contoh Gambar" className="rounded-xl" />
       </a>
