@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import CardProducts from "../components/fragments/CardProducts";
 import Button from "../components/elements/buttons";
 import Counter from "../components/fragments/Counter";
@@ -68,6 +68,14 @@ const ProductsPage = () => {
     });
   };
 
+  // useRef digunakan untuk menyimpan nilai yang tidak menyebabkan re-render saat berubah, seperti menyimpan referensi ke elemen DOM atau menyimpan nilai yang tidak perlu dipantau untuk perubahan.
+  const cartRef = useRef(JSON.parse(localStorage.getItem("cart")) || []);
+
+  const handleAddToCartRef = (id) => {
+    cartRef.current = [...cartRef.current, { id, qty: 1 }];
+    localStorage.setItem("cart", JSON.stringify(cartRef.current));
+  };
+
   return (
     <Fragment>
       <div className="flex justify-end h-10 bg-blue-600 text-white items-center px-10">
@@ -98,7 +106,7 @@ const ProductsPage = () => {
               <CardProducts.Footer
                 id={product.id}
                 price={product.price}
-                handleAddToCart={handleAddToCart}
+                handleAddToCart={handleAddToCartRef}
               >
                 Beli Sekarang
               </CardProducts.Footer>
@@ -118,7 +126,7 @@ const ProductsPage = () => {
                 </tr>
               </thead>
               <tbody>
-                {cart.map((item) => {
+                {cartRef.current.map((item) => {
                   const product = Products.find((p) => p.id === item.id);
                   return (
                     <tr key={item.id}>
@@ -141,7 +149,10 @@ const ProductsPage = () => {
                     </tr>
                   );
                 })}
-                <tr>
+
+                {/* Ini untuk total price */}
+
+                {/* <tr>
                   <td colSpan={3}>
                     <strong>Total</strong>
                   </td>
@@ -154,7 +165,7 @@ const ProductsPage = () => {
                       })}
                     </strong>
                   </td>
-                </tr>
+                </tr> */}
               </tbody>
             </table>
           </ul>
