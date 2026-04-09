@@ -61,6 +61,11 @@ const ProductsPage = () => {
           logout
         </Button>
       </div>
+      <div className="mt-5 flex justify-center">
+        <Counter>
+
+        </Counter>
+      </div>
       <div className="flex justify-center py-5">
         {/* <CardProducts>
               <CardProducts.Header image="/img/kebab_290922.jpg"></CardProducts.Header>
