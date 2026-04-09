@@ -1,3 +1,4 @@
+import { login } from "../../service/auth.service";
 import Button from "../elements/buttons";
 import InputForm from "../elements/input";
 import { useEffect, useRef } from "react";
@@ -8,6 +9,10 @@ const FormLogin = () => {
     // localStorage.setItem("email", e.target.email.value);
     // localStorage.setItem("password", e.target.password.value);
     // window.location.href = "/products";
+    login({
+      email: e.target.email.value,
+      password: e.target.password.value,
+    });
   };
 
   const emailRef = useRef(null);
