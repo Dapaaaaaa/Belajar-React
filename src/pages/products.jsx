@@ -2,31 +2,35 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import CardProducts from "../components/fragments/CardProducts";
 import Button from "../components/elements/buttons";
 import Counter from "../components/fragments/Counter";
+import { getProducts } from "../service/product.service";
 
-const Products = [
-  {
-    id: 1,
-    name: "Kebab Ayam",
-    price: 10000,
-    image: "img/kebab_290922.jpg",
-    description:
-      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus autem velit magni, cupiditate quae soluta iusto odit debitis eum impedit maxime obcaecati, aperiam pariatur architecto reiciendis voluptates. Explicabo, autem eius.",
-  },
-  {
-    id: 2,
-    name: "Kebab Sapi",
-    price: 15000,
-    image: "img/kebab_290922.jpg",
-    description:
-      "Lorem ipsum dolor, sit amet consectetur aodit debitis  reiciendis voluptates. Explicabo, autem eius.",
-  },
-];
+// const Products = [
+//   {
+//     id: 1,
+//     name: "Kebab Ayam",
+//     price: 10000,
+//     image: "img/kebab_290922.jpg",
+//     description:
+//       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Natus autem velit magni, cupiditate quae soluta iusto odit debitis eum impedit maxime obcaecati, aperiam pariatur architecto reiciendis voluptates. Explicabo, autem eius.",
+//   },
+//   {
+//     id: 2,
+//     name: "Kebab Sapi",
+//     price: 15000,
+//     image: "img/kebab_290922.jpg",
+//     description:
+//       "Lorem ipsum dolor, sit amet consectetur aodit debitis  reiciendis voluptates. Explicabo, autem eius.",
+//   },
+// ];
 
 const email = localStorage.getItem("email");
 
 const ProductsPage = () => {
   const [cart, setCart] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [products, setProducts] = useState([]);
+
+
   useEffect(() => {
     setCart(JSON.parse(localStorage.getItem("cart")) || []);
   }, []);
@@ -41,6 +45,12 @@ const ProductsPage = () => {
       localStorage.setItem("cart", JSON.stringify(cart));
     }
   }, [cart]);
+
+  useEffect(() => {
+    getProducts((data) => {
+      console.log(data);
+    })
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("email");
