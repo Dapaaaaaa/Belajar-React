@@ -43,7 +43,7 @@ const ProductsPage = () => {
       setTotalPrice(totalPrice);
       localStorage.setItem("cart", JSON.stringify(cart));
     }
-  }, [cart]);
+  }, [cart, products]);
 
   useEffect(() => {
     getProducts((data) => {
@@ -154,7 +154,7 @@ const ProductsPage = () => {
                     if (!product) return null;
                     return (
                       <tr key={item.id}>
-                        <td>{product.title}</td>
+                        <td>{product.title.substring(0, 15)}...</td>
                         <td>
                           {product.price.toLocaleString("en-US", {
                             style: "currency",
