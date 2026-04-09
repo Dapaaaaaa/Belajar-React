@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import CardProducts from "../components/fragments/CardProducts";
 import Button from "../components/elements/buttons";
 import Counter from "../components/fragments/Counter";
@@ -26,6 +26,21 @@ const email = localStorage.getItem("email");
 
 const ProductsPage = () => {
   const [cart, setCart] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+  useEffect(() => {
+    setCart(JSON.parse(localStorage.getItem("cart")) || []);
+  }, []);
+
+  useEffect(() => {
+    if (cart.length > 0) {
+      const totalPrice = cart.reduce((total, item) => {
+        const product = Products.find((p) => p.id === item.id);
+        return total + product.price * item.qty;
+      }, 0);
+      setTotalPrice(totalPrice);
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+  }, [cart]);
 
   const handleLogout = () => {
     localStorage.removeItem("email");
@@ -61,11 +76,9 @@ const ProductsPage = () => {
           logout
         </Button>
       </div>
-      <div className="mt-5 flex justify-center">
-        <Counter>
-
-        </Counter>
-      </div>
+      {/* <div className="mt-5 flex justify-center">
+        <Counter></Counter>
+      </div> */}
       <div className="flex justify-center py-5">
         {/* <CardProducts>
               <CardProducts.Header image="/img/kebab_290922.jpg"></CardProducts.Header>
@@ -128,6 +141,20 @@ const ProductsPage = () => {
                     </tr>
                   );
                 })}
+                <tr>
+                  <td colSpan={3}>
+                    <strong>Total</strong>
+                  </td>
+                  <td>
+                    <strong>
+                      Rp.
+                      {totalPrice.toLocaleString("id-ID", {
+                        styles: "currency",
+                        currency: "IDR",
+                      })}
+                    </strong>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </ul>
