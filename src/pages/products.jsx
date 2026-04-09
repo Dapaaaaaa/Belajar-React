@@ -76,6 +76,16 @@ const ProductsPage = () => {
     localStorage.setItem("cart", JSON.stringify(cartRef.current));
   };
 
+  const totalPriceRef = useRef(null);
+
+  useEffect(() => {
+    if (cart.length > 0) {
+      totalPriceRef.current.style.display = "table-row";
+    } else {
+      totalPriceRef.current.style.display = "none";
+    }
+  }, [cart]);
+
   return (
     <Fragment>
       <div className="flex justify-end h-10 bg-blue-600 text-white items-center px-10">
@@ -106,7 +116,7 @@ const ProductsPage = () => {
               <CardProducts.Footer
                 id={product.id}
                 price={product.price}
-                handleAddToCart={handleAddToCartRef}
+                handleAddToCart={handleAddToCart}
               >
                 Beli Sekarang
               </CardProducts.Footer>
@@ -150,7 +160,7 @@ const ProductsPage = () => {
                   );
                 })}
 
-                <tr>
+                <tr ref={totalPriceRef}>
                   <td colSpan={3}>
                     <strong>Total</strong>
                   </td>
