@@ -1,13 +1,13 @@
 import axios from "axios";
 
-export const getProducts = async (callback) => {
+export const getProducts = (callback) => {
   axios
     .get("https://api.escuelajs.co/api/v1/products")
-    .then((response) => {
-      callback(response.data);
+    .then((res) => {
+      callback(res.data);
     })
-    .catch((error) => {
-      console.error("Error fetching products:", error);
+    .catch((err) => {
+      console.err("error fetching products:", err);
       return [];
     });
 };
