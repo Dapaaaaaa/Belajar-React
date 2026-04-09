@@ -126,7 +126,7 @@ const ProductsPage = () => {
                 </tr>
               </thead>
               <tbody>
-                {cartRef.current.map((item) => {
+                {cart.map((item) => {
                   const product = Products.find((p) => p.id === item.id);
                   return (
                     <tr key={item.id}>
@@ -150,9 +150,7 @@ const ProductsPage = () => {
                   );
                 })}
 
-                {/* Ini untuk total price */}
-
-                {/* <tr>
+                <tr>
                   <td colSpan={3}>
                     <strong>Total</strong>
                   </td>
@@ -165,7 +163,7 @@ const ProductsPage = () => {
                       })}
                     </strong>
                   </td>
-                </tr> */}
+                </tr>
               </tbody>
             </table>
           </ul>
