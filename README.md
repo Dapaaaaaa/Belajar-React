@@ -1,5 +1,6 @@
 # Belajar-React
-Tempat pembelajaran menggunakan bahasa pemrograman React untuk pemula menggunakan referensi dari youtube dengan nama channel VIP CODE STUDIO https://www.youtube.com/@vipcodestudio serta.
+Tempat pembelajaran menggunakan bahasa pemrograman React untuk pemula menggunakan referensi dari youtube dengan nama channel VIP CODE STUDIO https://www.youtube.com/@vipcodestudio serta
+sedikit perubahan melalui bantuan AI dikarenakan versi React JS yang berbeda.
 
 ## Daftar Pustaka
 ### Youtube
