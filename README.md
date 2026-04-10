@@ -70,4 +70,4 @@ Setelah itu, buka browser dan akses URL yang tertera di terminal, biasanya http:
 22. Implementasi React Redux
 23. useContext
 24. useReducer
-25. 
+25. Finishing
