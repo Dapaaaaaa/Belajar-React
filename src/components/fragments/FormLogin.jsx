@@ -1,7 +1,7 @@
 import { login } from "../../service/auth.service";
 import Button from "../elements/buttons";
 import InputForm from "../elements/input";
-import { useEffect, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
 const FormLogin = () => {
   const handleLogin = (e) => {
@@ -9,9 +9,17 @@ const FormLogin = () => {
     // localStorage.setItem("email", e.target.email.value);
     // localStorage.setItem("password", e.target.password.value);
     // window.location.href = "/products";
-    login({
+
+    const data = {
       email: e.target.email.value,
       password: e.target.password.value,
+    };
+    login(data, (status, response) => {
+      if (status) {
+        localStorage.setItem("token", response);
+      } else {
+        console.log("Login failed:", response);
+      }
     });
   };
 
@@ -19,7 +27,7 @@ const FormLogin = () => {
 
   useEffect(() => {
     emailRef.current.focus();
-}, []);
+  }, []);
 
   return (
     <form onSubmit={handleLogin}>
