@@ -2,7 +2,7 @@ import Button from "../elements/buttons";
 
 const Header = (props) => {
   const { image } = props;
-  
+
   // Fungsi untuk membersihkan URL gambar dari Platzi API yang sering bermasalah
   const cleanUrl = (url) => {
     if (!url) return "";
@@ -14,7 +14,14 @@ const Header = (props) => {
     // {/* Div Gambar */}
     <div className="p-5 h-100 flex items-center justify-center bg-gray-700 rounded-tl-lg rounded-tr-lg">
       <a href="#">
-        <img src={image} alt="Contoh Gambar" className="rounded-xl" />
+        <img
+          src={cleanUrl(image)}
+          alt="Contoh Gambar"
+          className="rounded-xl"
+          onError={(e) => {
+            e.target.src = "https://via.placeholder.com/300"; // Fallback jika link mati
+          }}
+        />
       </a>
     </div>
   );
@@ -36,14 +43,16 @@ const Body = (props) => {
 };
 
 const Footer = (props) => {
-  const { children, price, handleAddToCart, id} = props;
+  const { children, price, handleAddToCart, id } = props;
   return (
     //  {/* Div Tombol */}
     <div className="flex items-center justify-between px-5 pb-3">
       <span className="text-xl font-bold text-white">
         {price.toLocaleString("en-US", { style: "currency", currency: "USD" })}
       </span>
-      <Button variant="bg-blue-600" onClick={() => handleAddToCart(id)}>{children}</Button>
+      <Button variant="bg-blue-600" onClick={() => handleAddToCart(id)}>
+        {children}
+      </Button>
     </div>
   );
 };
