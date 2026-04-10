@@ -11,3 +11,15 @@ export const getProducts = (callback) => {
       return [];
     });
 };
+
+export const getProductById = (id, callback) => {
+  axios
+    .get(`https://api.escuelajs.co/api/v1/products/${id}`)
+    .then((res) => {
+      callback(res.data); 
+    })
+    .catch((err) => {
+      console.error(`error fetching product with id ${id}:`, err);
+      callback(null); 
+    });
+}; 

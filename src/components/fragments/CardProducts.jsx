@@ -1,7 +1,8 @@
 import Button from "../elements/buttons";
+import { Link } from "react-router-dom";
 
 const Header = (props) => {
-  const { image } = props;
+  const { image, id } = props;
 
   // Fungsi untuk membersihkan URL gambar dari Platzi API yang sering bermasalah
   const cleanUrl = (url) => {
@@ -13,7 +14,7 @@ const Header = (props) => {
   return (
     // {/* Div Gambar */}
     <div className="p-5 h-100 flex items-center justify-center bg-gray-700 rounded-tl-lg rounded-tr-lg">
-      <a href="#">
+      <Link to={`/product/${id}`}>
         <img
           src={cleanUrl(image)}
           alt="Contoh Gambar"
@@ -22,21 +23,21 @@ const Header = (props) => {
             e.target.src = "https://via.placeholder.com/300"; // Fallback jika link mati
           }}
         />
-      </a>
+      </Link>
     </div>
   );
 };
 
 const Body = (props) => {
-  const { name, children } = props;
+  const { name, children, id } = props;
   return (
     // {/* Div Text */}
     <div className="px-5 pb-3 h-full">
-      <a href="">
+      <Link to={`/product/${id}`}>
         <h5 className=" text-2xl font-semibold tracking-tight text-white">
           {name.substring(0, 20)}...
         </h5>
-      </a>
+      </Link>
       <p className="text-base text-white">{children.substring(0, 100)}...</p>
     </div>
   );
