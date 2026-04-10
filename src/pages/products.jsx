@@ -31,7 +31,7 @@ const ProductsPage = () => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    setCart(JSON.parse(localStorage.getItem("cart")) || []);
+    setCart([]);
   }, []);
 
   useEffect(() => {
