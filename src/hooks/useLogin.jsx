@@ -32,6 +32,20 @@ export const useLogin = () => {
     });
   };
 
+  useEffect(() => {
+    let timer;
+    if (showToast && countdown > 0) {
+      timer = setInterval(() => {
+        setCountdown((prev) => prev - 1);
+      }, 1000);
+    } else if (countdown === 0) {
+      setShowToast(false);
+    }
+
+    // Cleanup function agar tidak memory leak
+    return () => clearInterval(timer);
+  }, [showToast, countdown]);
+
   return {
     handleLogin,
     loginFailed,
