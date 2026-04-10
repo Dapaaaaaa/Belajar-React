@@ -2,6 +2,14 @@ import Button from "../elements/buttons";
 
 const Header = (props) => {
   const { image } = props;
+  
+  // Fungsi untuk membersihkan URL gambar dari Platzi API yang sering bermasalah
+  const cleanUrl = (url) => {
+    if (!url) return "";
+    // Menghapus karakter [ ] " yang sering nyangkut di data Platzi
+    return url.replace(/[\[\]"]/g, "");
+  };
+
   return (
     // {/* Div Gambar */}
     <div className="p-5 h-100 flex items-center justify-center bg-gray-700 rounded-tl-lg rounded-tr-lg">
