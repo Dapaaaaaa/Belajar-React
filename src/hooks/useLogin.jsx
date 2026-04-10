@@ -21,6 +21,8 @@ export const useLogin = () => {
       setIsLoading(false);
       if (status) {
         localStorage.setItem("token", response);
+        localStorage.setItem("email", data.email);
+        localStorage.setItem("password", data.password);
         // Kita kirim status ke komponen agar komponen bisa handle redirect
         if (callback) callback(true);
       } else {
